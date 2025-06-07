@@ -1,0 +1,273 @@
+const mongoose = require('mongoose');
+
+const userActivitySchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+    ref: 'User',
+    index: true
+  },
+  bookingId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  carName: {
+    type: String,
+    required: true
+  },
+  carCategory: {
+    type: String,
+    required: true
+  },
+  pricePerDay: {
+    type: Number,
+    required: true
+  },
+  duration: {
+    type: String,
+    required: true
+  },
+  numberOfDays: {
+    type: Number,
+    required: true
+  },
+  pickUpLocation: {
+    type: String,
+    required: true
+  },
+  returnLocation: {
+    type: String,
+    required: true
+  },
+  pickUpDate: {
+    type: String,
+    required: true
+  },
+  returnDate: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    required: true,
+    default: 'Pending'
+  }
+}, {
+  timestamps: true,
+  collection: 'userActivity'
+});
+
+// Create indexes
+userActivitySchema.index({ userId: 1 });
+userActivitySchema.index({ bookingId: 1 });
+userActivitySchema.index({ status: 1 });
+
+const UserActivity = mongoose.model('UserActivity', userActivitySchema);
+
+module.exports = UserActivity;
+  userId: {
+    type: String,
+    required: true,
+    ref: 'User',
+    index: true
+  },
+  bookingId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  carName: {
+    type: String,
+    required: true
+  },
+  carCategory: {
+    type: String,
+    required: true
+  },
+  pricePerDay: {
+    type: Number,
+    required: true
+  },
+  duration: {
+    type: String,
+    required: true
+  },
+  numberOfDays: {
+    type: Number,
+    required: true
+  },
+  pickUpLocation: {
+    type: String,
+    required: true
+  },
+  returnLocation: {
+    type: String,
+    required: true
+  },
+  pickUpDate: {
+    type: String,
+    required: true
+  },
+  returnDate: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    required: true,
+    default: 'Pending'
+  }
+}, {
+  timestamps: true,
+  collection: 'userActivity'
+});
+
+// Create indexes
+userActivitySchema.index({ userId: 1 });
+userActivitySchema.index({ bookingId: 1 });
+userActivitySchema.index({ status: 1 });
+
+const UserActivity = mongoose.model('UserActivity', userActivitySchema);
+
+module.exports = UserActivity;
+  userId: {
+    type: String,
+    required: true,
+    ref: 'User',
+    index: true
+  },
+  bookingId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  carName: {
+    type: String,
+    required: true
+  },
+  carCategory: {
+    type: String,
+    required: true
+  },
+  pricePerDay: {
+    type: Number,
+    required: true
+  },
+  duration: {
+    type: String,
+    required: true
+  },
+  numberOfDays: {
+    type: Number,
+    required: true
+  },
+  pickUpLocation: {
+    type: String,
+    required: true
+  },
+  returnLocation: {
+    type: String,
+    required: true
+  },
+  pickUpDate: {
+    type: String,
+    required: true
+  },
+  returnDate: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    required: true,
+    default: 'Pending'
+  }
+}, {
+  timestamps: true,
+  collection: 'userActivity'
+});
+
+// Create indexes
+userActivitySchema.index({ userId: 1 });
+userActivitySchema.index({ bookingId: 1 });
+userActivitySchema.index({ status: 1 });
+  userId: {
+    type: String,
+    required: true,
+    ref: 'User' // Reference to User collection
+  },
+  bookingId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  carName: {
+    type: String,
+    required: true
+  },
+  carCategory: {
+    type: String,
+    required: true
+  },
+  pricePerDay: {
+    type: Number,
+    required: true
+  },
+  duration: {
+    type: String,
+    required: true
+  },
+  numberOfDays: {
+    type: Number,
+    required: true
+  },
+  pickUpLocation: {
+    type: String,
+    required: true
+  },
+  returnLocation: {
+    type: String,
+    required: true
+  },
+  paymentId: {
+    type: String,
+    required: true
+  },
+  paymentDate: {
+    type: Date,
+    required: true
+  },
+  totalAmount: {
+    type: Number,
+    required: true
+  },
+  bookingStatus: {
+    type: String,
+    required: true,
+    enum: ['pending', 'confirmed', 'completed', 'cancelled']
+  },
+  paymentStatus: {
+    type: String,
+    required: true,
+    enum: ['pending', 'paid', 'failed', 'refunded']
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
+}, {
+  timestamps: true
+});
+
+// Update updatedAt timestamp on any update
+userActivitySchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+module.exports = mongoose.model('UserActivity', userActivitySchema, 'User-Activity');
